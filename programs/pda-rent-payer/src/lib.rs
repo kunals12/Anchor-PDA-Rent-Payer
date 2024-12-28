@@ -1,4 +1,6 @@
 use anchor_lang::prelude::*;
+mod instructions;
+use instructions::*;
 
 declare_id!("G5PvVjVqALUKvNkmPXstGWqD4NtGgzVUzYRQVfebyXfu");
 
@@ -6,11 +8,11 @@ declare_id!("G5PvVjVqALUKvNkmPXstGWqD4NtGgzVUzYRQVfebyXfu");
 pub mod pda_rent_payer {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
-        Ok(())
+    pub fn init_rent_vault(ctx: Context<InitRentVault>, amount: u64) -> Result<()> {
+        init_rent_vault::init_rent_vault(ctx, amount)
+    }
+
+    pub fn create_new_account(ctx: Context<CreateNewAccount>) -> Result<()> {
+        create_new_account::create_new_account(ctx)
     }
 }
-
-#[derive(Accounts)]
-pub struct Initialize {}
